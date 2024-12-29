@@ -62,7 +62,7 @@ main()
     touchAfter: 24 * 3600
   });
 
-  store.on("error", () =>{
+  store.on("error", (err) =>{
     console.log("ERROR IN MONGO SESSION STORE", err);
   });
 
@@ -99,11 +99,13 @@ passport.deserializeUser(User.deserializeUser());
 
 // Flash messages & current user middleware
 app.use((req, res, next) => {
+  console.log("Current User:", req.user);
   res.locals.success = req.flash("success");
   res.locals.error = req.flash("error");
-  res.locals.currUser = req.user; // Current user information
+  res.locals.currUser = req.user;
   next();
 });
+
 
 // Use Routes
 app.use("/listings", listings);
