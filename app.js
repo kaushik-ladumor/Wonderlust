@@ -69,7 +69,7 @@ main()
 // Session Configuration
 const sessionOption = {
   store,
-  secret: "mysupersecretcode",
+  secret: process.env.SECRET,
   resave: false,
   saveUninitialized: true,
   cookie: {
